@@ -7,14 +7,14 @@ namespace Task_19._11
 
     class BigRace : IAddGames
     {
-        static public List<string> Games = new List<string>  { "Пляж", "Мышеловка", "Море", "Рыбалка", "Почтальоны", "Горка" };
+        static public List<Game> Games = new List<Game>  { new Game("Пляж"), new Game("Мышеловка"), new Game("Море"), new Game("Рыбалка"), new Game("Почтальоны"), new Game("Горка") };
         public BigRace()
         {
 
         }
-        public void AddGame(params string[] games)
+        public void AddGame(List<Game> games)
         {
-            foreach(string item in games)
+            foreach(Game item in games)
             {
                 Games.Add(item);
             }

@@ -6,6 +6,6 @@ namespace Task_19._11
 {
     interface IAddGames
     {
-        public void AddGame(params string[] game);
+        public void AddGame(List<Game> game);
     }
 }

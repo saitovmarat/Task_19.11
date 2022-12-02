@@ -8,7 +8,7 @@ namespace Task_19._11
     {
         static void RepeatTheMainProcess(int i, List<string> appropriateTeams, List<string> teams)
         {
-            Console.WriteLine($"Кто с кем будет играть в {BigRace.Games[i]} из этого списка? (Напиши через пробел)");
+            Console.WriteLine($"Кто с кем будет играть в {BigRace.Games[i].Name} из этого списка? (Напиши через пробел)");
             DisplayTeams(teams);
             string[] enemy = Console.ReadLine().Split(" ");
             if (enemy[0] == enemy[1])
@@ -29,7 +29,7 @@ namespace Task_19._11
             else
             {
                 Console.WriteLine("");
-                Console.WriteLine($"{enemy[0]} сыграл(а) с {enemy[1]} в {BigRace.Games[i]}");
+                Console.WriteLine($"{enemy[0]} сыграл(а) с {enemy[1]} в {BigRace.Games[i].Name}");
                 Console.ReadKey();
                 Console.Clear();
 
@@ -92,7 +92,7 @@ namespace Task_19._11
 
             for (int i = 0; i < BigRace.Games.Count; i++)
             {
-                Console.WriteLine($"Кто с кем будет играть в {BigRace.Games[i]} из этого списка? (Напиши через пробел)");
+                Console.WriteLine($"Кто с кем будет играть в {BigRace.Games[i].Name} из этого списка? (Напиши через пробел)");
                 DisplayTeams(teams);
                 string[] enemy = Console.ReadLine().Split(" ");
                 if (enemy[0] == enemy[1])
@@ -112,7 +112,7 @@ namespace Task_19._11
                 else
                 {
                     Console.WriteLine("");
-                    Console.WriteLine($"{enemy[0]} сыграл(а) с {enemy[1]} в {BigRace.Games[i]}");
+                    Console.WriteLine($"{enemy[0]} сыграл(а) с {enemy[1]} в {BigRace.Games[i].Name}");
                     Console.ReadKey();
                     Console.Clear();
                 }
@@ -132,9 +132,17 @@ namespace Task_19._11
                 }
                 else if (answer == "нет")
                 {
-                    Console.WriteLine("В какие игры еще они поиграют? (напиши названия игр через два пробела)");                    
-                    new BigRace().AddGame(Console.ReadLine().Split("  "));
+                    Console.WriteLine("В какие игры еще они поиграют? (напиши названия игр через два пробела)");
+                    string[] gameNames = Console.ReadLine().Split("  ");
+                    List<Game> games = new List<Game> { };
+                    BigRace race = new BigRace();
+                    
+                    for(int i = 0; i< gameNames.Length; i++)
+                    {
+                        games.Add(new Game(gameNames[i]));
+                    }
                     int index = BigRace.Games.Count;
+                    race.AddGame(games);
                     for (int i = index; i< BigRace.Games.Count; i++)
                     {
                         RepeatTheMainProcess(i, appropriateTeams, teams);
